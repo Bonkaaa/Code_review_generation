@@ -10,3 +10,7 @@ model_params = {
     "MAX_TARGET_TEXT_LENGTH": 1024,  # max length of target text
     "SEED": 42,  # set seed for reproducibility
 }
+
+#GPU usage
+from torch import cuda
+DEVICE = 'cuda' if cuda.is_available() else 'cpu'

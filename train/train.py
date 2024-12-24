@@ -3,7 +3,6 @@ import numpy as np
 import os
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from torch.utils.data import DataLoader
-from GPU_usage import *
 from CustomDataset import CustomDataset
 from train.Eval import *
 
@@ -14,9 +13,9 @@ def train_per_iter(model, train_set_loader, optimizer):
     final_loss = 0
     for i, data in enumerate(train_set_loader):
         # Extracting data
-        in_ids = data['source_ids'].to(device)
-        in_mask = data['source_mask'].to(device)
-        target_ids = data['target_ids'].to(device)
+        in_ids = data['source_ids'].to(DEVICE)
+        in_mask = data['source_mask'].to(DEVICE)
+        target_ids = data['target_ids'].to(DEVICE)
         target_ids_new = target_ids[:-1, :]  # Shifting by one to avoid <technical_language>
 
         # Clear cache
@@ -62,7 +61,7 @@ def T5_trainer(model_params, train_path, val_path):
 
     # model T5
     model = T5ForConditionalGeneration.from_pretrained(model_params['MODEL'])
-    model = model.to(device)
+    model = model.to(DEVICE)
 
     # creating
     training_set = CustomDataset(
