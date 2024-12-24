@@ -8,8 +8,6 @@ def evaluate(tokenizer, model, val_set_loader):
 
     # Initialize
     total_loss = 0
-    all_ep = 0
-    all_em = 0
     all_bleu_score = []
 
     with torch.no_grad():
