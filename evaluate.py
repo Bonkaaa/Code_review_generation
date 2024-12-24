@@ -1,7 +1,7 @@
 import torch
 import numpy as np
-from GPU_usage import *
 from metrics.BLEU_score import *
+from constants import *
 
 def evaluate(tokenizer, model, val_set_loader):
     model.eval()
@@ -14,9 +14,9 @@ def evaluate(tokenizer, model, val_set_loader):
 
     with torch.no_grad():
         for i, data in enumerate(val_set_loader):
-            inputs_ids = data['source_ids'].to(device)
-            input_masks = data['source_mask'].to(device)
-            target_ids = data['target_ids'].to(device)
+            inputs_ids = data['source_ids'].to(DEVICE)
+            input_masks = data['source_mask'].to(DEVICE)
+            target_ids = data['target_ids'].to(DEVICE)
 
             # calculate loss
             outputs = model(

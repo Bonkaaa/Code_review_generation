@@ -4,7 +4,7 @@ import os
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 from torch.utils.data import DataLoader
 from CustomDataset import CustomDataset
-from train.Eval import *
+from evaluate import *
 
 
 def train_per_iter(model, train_set_loader, optimizer):
